@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PizzaScript : MonoBehaviour {
     public Rigidbody2D pizzaBody;
@@ -61,7 +62,7 @@ public class PizzaScript : MonoBehaviour {
         {
             pizzaBody.velocity = Vector2.zero;
             pizzaBody.angularVelocity = 0;
-            stoppedAlready = true;
+            stoppedAlready = true;  // unnecessary after events are set up
         }
 
         if (Input.GetKeyDown(KeyCode.Space) == true && stoppedAlready == true) 
