@@ -18,6 +18,9 @@ public class PizzaScript : MonoBehaviour {
     bool stoppedAlready = false;
     Vector2 startingPosition = new Vector2(-20, -1.5f);
 
+    public GameEvent PizzaStopped;
+    public GameEvent PizzaSent;
+
     bool pepperoni = false;
     bool sausage = false;
     bool greenpeppers = false;
@@ -62,13 +65,15 @@ public class PizzaScript : MonoBehaviour {
         {
             pizzaBody.velocity = Vector2.zero;
             pizzaBody.angularVelocity = 0;
-            stoppedAlready = true;  // unnecessary after events are set up
+            stoppedAlready = true;
+            PizzaStopped.TriggerEvent();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) == true && stoppedAlready == true) 
         {
             pizzaBody.velocity = Vector2.right * velocityMagnitude;
             pizzaBody.angularVelocity = angularVelocityMagnitude;
+            PizzaSent.TriggerEvent();
         }
     }
 

@@ -5,15 +5,13 @@ using UnityEngine;
 public class PizzaInstructionsScript : MonoBehaviour
 {
     public Rigidbody2D pizzaInstructionsBody;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         pizzaInstructionsBody.position = new Vector2(0, -2);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
         
     }
