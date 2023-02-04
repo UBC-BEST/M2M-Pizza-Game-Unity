@@ -5,14 +5,10 @@ using UnityEngine;
 public class PizzaInstructionsScript : MonoBehaviour
 {
     public Rigidbody2D pizzaInstructionsBody;
+    public Vector2 startingPosition = new Vector2(0, 3.6f);
 
-    void OnEnable()
+    void Start()
     {
-        pizzaInstructionsBody.position = new Vector2(0, -2);
-    }
-
-    void OnDisable()
-    {
-        
+        pizzaInstructionsBody.position = startingPosition;
     }
 }

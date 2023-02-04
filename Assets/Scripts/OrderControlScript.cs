@@ -4,42 +4,77 @@ using UnityEngine;
 
 public class OrderControlScript : MonoBehaviour
 {
-    bool orderExists = false; 
-    bool orderCleared = false; 
-    int points = 0;
+    public Rigidbody2D ticketBody;
+    public SpriteRenderer spriteRenderer;
+    public Sprite[] ticketSprites; 
+    public PizzaScript pizzaScript;
+
+    public GameEvent OrderReady;
+    public GameEvent ScoreUp;
+
+    public float yUpPosition = 6.5f;
+    public float yDownPosition = 4.0f;
+    public Vector2 startingPosition = new Vector2(-6, 6.5f);    
+    public float velocityMagnitude = 3f;
     
+    bool orderExists = false; 
+    bool orderDisplayed = false;
+    int orderNumber = 0;
+    
+    void Start() {
+        ticketBody.position = startingPosition;
+        ticketBody.velocity = Vector2.zero;
+    }
+
+    void Update() {
+        if (!orderExists) {
+            OrderSpawner();
+        }
+        
+        OrderSpriteControl();
+        OrderMovementControl();
+    }
+
     /*
-        lol
         generate a random number in a range inclusive
     */
-    public int randomNumberInRange(int min, int max) {
+    int randomNumberInRange(int min, int max) {
         System.Random random = new System.Random();
         int orderNumber = random.Next(min, max + 1);
         return orderNumber;
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        // set position of order tickets
-        // wait a few seconds (delay in first order) 
+
+    void OrderSpawner() { 
+        orderNumber = randomNumberInRange(1, 15);
+        orderDisplayed = false;
+        orderExists = true;
+        OrderReady.TriggerEvent();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!orderExists) {
-            // generate a new order
+    void OrderSpriteControl() {
+        spriteRenderer.sprite = ticketSprites[orderNumber - 1];
+    }
+
+    void OrderMovementControl() {
+        if (ticketBody.position.y > yDownPosition && !orderDisplayed) {
+            ticketBody.velocity = Vector2.down * velocityMagnitude; 
+        }
+        if (ticketBody.position.y <= yDownPosition && !orderDisplayed) {
+            ticketBody.velocity = Vector2.zero;
+            orderDisplayed = true; 
+        }
+        if (ticketBody.position.y >= yUpPosition && orderDisplayed) {
+            ticketBody.velocity = Vector2.zero;
+            orderExists = false;
+            orderDisplayed = false;
+        }
+    }
+
+    public void CheckOrder() {
+        if (orderNumber == pizzaScript.GetSpriteNumber()) {
+            ScoreUp.TriggerEvent();
         }
 
-        if (orderCleared) {
-            points++; 
-            // hide the order from the screen before deleting the order
-            // wait a few (random amount of) seconds before allowing the check if the order does not exist, so the new order doesn't show up instantly
-        }
-        
-        // once the spacebar is pressed (send the pizza), check what toppings the pizza has
-        // if the toppings match the order, put a flag to clear the order
-        // if the toppings do not match the order, pizza still gets sent, but nothing happens to the order 
+        ticketBody.velocity = Vector2.up * velocityMagnitude;
     }
 }
