@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class PizzaScript : MonoBehaviour {
     public GameObject Pizza;
@@ -32,8 +34,6 @@ public class PizzaScript : MonoBehaviour {
     void Start() {
         spriteRenderer.sprite = pizzaSprites[0];
         pizzaBody.position = startingPosition;
-        pizzaBody.velocity = Vector2.right * velocityMagnitude;
-        pizzaBody.angularVelocity = angularVelocityMagnitude;
     }
 
     void Update() {
@@ -47,18 +47,27 @@ public class PizzaScript : MonoBehaviour {
     }
 
     void PizzaMovement() {
+        if (pizzaBody.position == startingPosition) {
+            DOTween.SetTweensCapacity(500, 50);
+            transform.DOMoveX(0.0f, 2.0f)
+                .SetEase(Ease.InOutSine);
+            transform.DORotate(new Vector3(0.0f, 0.0f, 200.0f), 2.0f, RotateMode.FastBeyond360)
+                .SetEase(Ease.InOutSine);
+        }
+        
         if (pizzaBody.position.x >= 0 && !stoppedAlready) 
         {
             pizzaBody.velocity = Vector2.zero;
-            pizzaBody.angularVelocity = 0;
             stoppedAlready = true;
             PizzaStopped.TriggerEvent();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && stoppedAlready) 
         {
-            pizzaBody.velocity = Vector2.right * velocityMagnitude;
-            pizzaBody.angularVelocity = angularVelocityMagnitude;
+            transform.DOMoveX(20.0f, 2.0f)
+                .SetEase(Ease.InSine);
+            transform.DORotate(new Vector3(0.0f, 0.0f, 360.0f), 2.0f, RotateMode.FastBeyond360)
+                .SetEase(Ease.InSine);
             PizzaSent.TriggerEvent();
         }
     }
@@ -117,10 +126,7 @@ public class PizzaScript : MonoBehaviour {
     }
 
     void ScreenWrapAroundControl() {
-        if (pizzaBody.position.x > -1 * startingPosition.x) 
-        {
-            pizzaBody.position = startingPosition;
-            pizzaBody.velocity = Vector2.zero;
+        if (pizzaBody.position.x >= 20) {
             stoppedAlready = false; 
             spriteRenderer.sprite = pizzaSprites[0];
 
@@ -128,6 +134,9 @@ public class PizzaScript : MonoBehaviour {
             sausage = false;
             greenpeppers = false;
             olives = false;
+
+            transform.DOMoveX(-20.0f, 0.0f);
+            pizzaBody.position = startingPosition;
 
             PizzaOffScreen.TriggerEvent();
         }
@@ -150,9 +159,5 @@ public class PizzaScript : MonoBehaviour {
 
     public int GetSpriteNumber() {
         return spriteNumber;
-    }
-
-    public void ResumePizzaMovement() {
-        pizzaBody.velocity = Vector2.right * velocityMagnitude;
     }
 }
