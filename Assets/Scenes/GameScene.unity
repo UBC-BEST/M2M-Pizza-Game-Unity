@@ -171,12 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8578400ebd127494da1bc9ce0fda0a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pizza: {fileID: 156967710}
   pizzaBody: {fileID: 156967712}
   spriteRenderer: {fileID: 156967713}
   pizzaSprites:
@@ -275,12 +274,9 @@ MonoBehaviour:
   - {fileID: 1365749659, guid: c382883afc2c07f488d10a02aa57ed51, type: 3}
   - {fileID: 1942033560, guid: c382883afc2c07f488d10a02aa57ed51, type: 3}
   - {fileID: 398930791, guid: c382883afc2c07f488d10a02aa57ed51, type: 3}
-  PizzaStopped: {fileID: 11400000, guid: 40989fa2ce9868d4caafdba2501bb7bc, type: 2}
-  PizzaSent: {fileID: 11400000, guid: 565ee3fc600cfa24783f0496194abaf9, type: 2}
-  PizzaOffScreen: {fileID: 11400000, guid: c42720301264f9241bff6e9dabe92fef, type: 2}
   velocityMagnitude: 15
   angularVelocityMagnitude: 100
-  startingPosition: {x: -20, y: -1.5}
+  spriteNumber: 0
 --- !u!50 &156967712
 Rigidbody2D:
   serializedVersion: 4
@@ -843,10 +839,13 @@ MonoBehaviour:
   pizzaScript: {fileID: 156967711}
   OrderReady: {fileID: 11400000, guid: 075e76838ba12b84e91a0bd8d62a8b6e, type: 2}
   ScoreUp: {fileID: 11400000, guid: 2a7eddeb0b2c3eb4a8a52ead8882ee93, type: 2}
+  baseHeight: 1080
+  startingPosition: {x: -6, y: 6.5}
+  originalScale: {x: 0, y: 0, z: 0}
+  screenScale: {x: 0, y: 0, z: 0}
+  velocityMagnitude: 5
   yUpPosition: 6.5
   yDownPosition: 4
-  startingPosition: {x: -6, y: 6.5}
-  velocityMagnitude: 5
 --- !u!4 &1829589065
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +856,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.0019836, y: 6.3447204, z: 0.036888123}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -998,7 +997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -210.78998, y: -100}
+  m_AnchoredPosition: {x: -210.78992, y: -100}
   m_SizeDelta: {x: 368.02, y: 123.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1941216440
