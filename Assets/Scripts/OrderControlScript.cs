@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class OrderControlScript : MonoBehaviour
@@ -13,20 +12,16 @@ public class OrderControlScript : MonoBehaviour
     public GameEvent OrderReady;
     public GameEvent ScoreUp;
 
-    public float baseHeight = 256f;
-    public Vector3 startingPosition;
-    public Vector3 originalScale, screenScale;    
-    public float velocityMagnitude = 3f;
     public float yUpPosition = 6.5f;
-    public float yDownPosition = 6.0f;
+    public float yDownPosition = 4.0f;
+    public Vector2 startingPosition = new Vector2(-6, 6.5f);  
+    public float velocityMagnitude = 3f;
     
     bool orderExists = false; 
     bool orderDisplayed = false;
     int orderNumber = 0;
     
     void Start() {
-        GetScaled();
-        startingPosition = new Vector3(-Screen.height/(2*baseHeight) - 4.5f, Screen.height/(2*baseHeight) + 6.5f, 0.0368f);
         ticketBody.position = startingPosition;
         ticketBody.velocity = Vector2.zero;
     }
@@ -62,10 +57,7 @@ public class OrderControlScript : MonoBehaviour
 
     void OrderMovementControl() {
         if (ticketBody.position.y > yDownPosition && !orderDisplayed) { 
-            //ticketBody.velocity = Vector2.down * velocityMagnitude;  
-            DOTween.SetTweensCapacity(500, 50);
-            transform.DOMoveY(yDownPosition, 2.0f)
-                .SetEase(Ease.InOutSine);
+            ticketBody.velocity = Vector2.down * velocityMagnitude;
         }
         if (ticketBody.position.y <= yDownPosition && !orderDisplayed) {
             ticketBody.velocity = Vector2.zero;
@@ -85,11 +77,4 @@ public class OrderControlScript : MonoBehaviour
 
         ticketBody.velocity = Vector2.up * velocityMagnitude;
     }
-
-    public void GetScaled() 
-    {
-        yDownPosition = Screen.height - 6.5f;
-        screenScale = new Vector3(baseHeight/Screen.width, baseHeight/Screen.height, 1f);
-        transform.DOScale(screenScale, 0f);
-    } 
 }
