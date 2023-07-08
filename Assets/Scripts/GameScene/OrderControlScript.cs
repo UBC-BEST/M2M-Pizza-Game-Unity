@@ -1,25 +1,30 @@
+/*
+    Order control script used by the order ticket object to 
+    generate and check orders. 
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OrderControlScript : MonoBehaviour
 {
-    public Rigidbody2D ticketBody;
-    public SpriteRenderer spriteRenderer;
-    public Sprite[] ticketSprites; 
-    public PizzaScript pizzaScript;
+    [SerializeField] Rigidbody2D ticketBody;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite[] ticketSprites; 
+    [SerializeField] PizzaScript pizzaScript;
 
-    public GameEvent OrderReady;
-    public GameEvent ScoreUp;
+    [SerializeField] GameEvent OrderReady;
+    [SerializeField] GameEvent ScoreUp;
 
-    public float yUpPosition = 6.5f;
-    public float yDownPosition = 4.0f;
-    public Vector2 startingPosition = new Vector2(-6, 6.5f);  
-    public float velocityMagnitude = 3f;
+    [SerializeField] float yUpPosition = 6.5f;
+    [SerializeField] float yDownPosition = 4.0f;
+    [SerializeField] Vector2 startingPosition = new Vector2(-6, 6.5f);  
+    [SerializeField] float velocityMagnitude = 3f;
     
-    bool orderExists = false; 
-    bool orderDisplayed = false;
-    int orderNumber = 0;
+    private bool orderExists = false; 
+    private bool orderDisplayed = false;
+    private int orderNumber = 0;
     
     void Start() {
         ticketBody.position = startingPosition;

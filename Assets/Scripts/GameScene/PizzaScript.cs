@@ -1,6 +1,10 @@
 /*
-    Script for Pizza Body
+    Script for pizza
     Controls the movement and sprites of the pizza. 
+
+    TODO: pizza should no longer need different sprites for toppings. 
+        Instead, that will be handled by the topping scripts. 
+        We may want more sprites later for animation stuff in the future. 
 */
 
 using System.Collections;
@@ -11,25 +15,22 @@ using DG.Tweening;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class PizzaScript : MonoBehaviour {
-    public GameObject Pizza;
-    public Rigidbody2D pizzaBody;
-    public SpriteRenderer spriteRenderer;
-    public Sprite[] pizzaSprites; 
+    [SerializeField] GameObject Pizza;
+    [SerializeField] Rigidbody2D pizzaBody;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite[] pizzaSprites; 
 
-    public GameEvent PizzaStopped;
-    public GameEvent PizzaSent;
-    public GameEvent PizzaOffScreen;
+    [SerializeField] GameEvent PizzaStopped;
+    [SerializeField] GameEvent PizzaSent;
+    [SerializeField] GameEvent PizzaOffScreen;
+    [SerializeField] Vector2 startingPosition = new Vector2(-20, -1.5f);
 
-    public float velocityMagnitude = 10f;
-    public float angularVelocityMagnitude = 50f;
-    public Vector2 startingPosition = new Vector2(-20, -1.5f);
-
-    bool stoppedAlready = false;
-    int spriteNumber = 0;
-    bool pepperoni = false;
-    bool sausage = false;
-    bool greenpeppers = false;
-    bool olives = false;
+    private bool stoppedAlready = false;
+    private int spriteNumber = 0;
+    private bool pepperoni = false;
+    private bool sausage = false;
+    private bool greenpeppers = false;
+    private bool olives = false;
     
     void Start() {
         spriteRenderer.sprite = pizzaSprites[0];
@@ -64,11 +65,11 @@ public class PizzaScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && stoppedAlready) 
         {
+            PizzaSent.TriggerEvent();
             transform.DOMoveX(20.0f, 2.0f)
                 .SetEase(Ease.InSine);
             transform.DORotate(new Vector3(0.0f, 0.0f, 360.0f), 2.0f, RotateMode.FastBeyond360)
                 .SetEase(Ease.InSine);
-            PizzaSent.TriggerEvent();
         }
     }
 
