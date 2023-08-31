@@ -1,10 +1,6 @@
 /*
     Script for pizza
     Controls the movement and sprites of the pizza. 
-
-    TODO: pizza should no longer need different sprites for toppings. 
-        Instead, that will be handled by the topping scripts. 
-        We may want more sprites later for animation stuff in the future. 
 */
 
 using System.Collections;
@@ -19,14 +15,12 @@ public class PizzaScript : MonoBehaviour {
     [SerializeField] Rigidbody2D pizzaBody;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite[] pizzaSprites; 
-
-    [SerializeField] GameEvent PizzaStopped;
-    [SerializeField] GameEvent PizzaSent;
-    [SerializeField] GameEvent PizzaOffScreen;
+    [SerializeField] GameEvent PizzaStopped, PizzaSent, PizzaOffScreen;
     [SerializeField] Vector2 startingPosition = new Vector2(-20, -1.5f);
+    [SerializeField] float moveTime = 2.0f; 
 
-    private bool stoppedAlready = false;
     private int spriteNumber = 0;
+    private bool stoppedAlready = false;
     private bool pepperoni = false;
     private bool sausage = false;
     private bool greenpeppers = false;
@@ -34,7 +28,7 @@ public class PizzaScript : MonoBehaviour {
     
     void Start() {
         spriteRenderer.sprite = pizzaSprites[0];
-        pizzaBody.position = startingPosition;
+        transform.DOMove(startingPosition, 0);
     }
 
     void Update() {
@@ -49,16 +43,12 @@ public class PizzaScript : MonoBehaviour {
 
     void PizzaMovement() {
         if (pizzaBody.position == startingPosition) {
-            DOTween.SetTweensCapacity(500, 50);
-            transform.DOMoveX(0.0f, 2.0f)
-                .SetEase(Ease.InOutSine);
-            transform.DORotate(new Vector3(0.0f, 0.0f, 200.0f), 2.0f, RotateMode.FastBeyond360)
-                .SetEase(Ease.InOutSine);
+            transform.DOMoveX(0.0f, moveTime).SetEase(Ease.InOutSine);
+            transform.DORotate(new Vector3(0.0f, 0.0f, 180.0f), moveTime, RotateMode.FastBeyond360).SetEase(Ease.InOutSine);
         }
         
         if (pizzaBody.position.x >= 0 && !stoppedAlready) 
         {
-            pizzaBody.velocity = Vector2.zero;
             stoppedAlready = true;
             PizzaStopped.TriggerEvent();
         }
@@ -66,10 +56,8 @@ public class PizzaScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && stoppedAlready) 
         {
             PizzaSent.TriggerEvent();
-            transform.DOMoveX(20.0f, 2.0f)
-                .SetEase(Ease.InSine);
-            transform.DORotate(new Vector3(0.0f, 0.0f, 360.0f), 2.0f, RotateMode.FastBeyond360)
-                .SetEase(Ease.InSine);
+            transform.DOMoveX(20.0f, moveTime).SetEase(Ease.InSine);
+            transform.DORotate(new Vector3(0.0f, 0.0f, 360.0f), moveTime, RotateMode.FastBeyond360).SetEase(Ease.InSine);
         }
     }
 
@@ -128,17 +116,14 @@ public class PizzaScript : MonoBehaviour {
 
     void ScreenWrapAroundControl() {
         if (pizzaBody.position.x >= 20) {
-            stoppedAlready = false; 
             spriteRenderer.sprite = pizzaSprites[0];
-
+            stoppedAlready = false; 
             pepperoni = false;
             sausage = false;
             greenpeppers = false;
             olives = false;
 
-            transform.DOMoveX(-20.0f, 0.0f);
-            pizzaBody.position = startingPosition;
-
+            transform.DOMove(startingPosition, 0);
             PizzaOffScreen.TriggerEvent();
         }
     }
