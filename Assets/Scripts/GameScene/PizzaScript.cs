@@ -111,7 +111,7 @@ public class PizzaScript : MonoBehaviour {
             spriteNumber = 15;
         }
 
-        spriteRenderer.sprite = pizzaSprites[spriteNumber];
+        spriteRenderer.sprite = pizzaSprites[0];
     }
 
     void ScreenWrapAroundControl() {

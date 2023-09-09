@@ -21,7 +21,7 @@ public class OrderControlScript : MonoBehaviour
     [SerializeField] float moveTime = 1.0f;
     
     private bool orderExists = false; 
-    private int orderNumber = 0;
+    private int orderNumber = 1;
     
     void Start() {
         transform.DOMove(startingPosition, 0);
