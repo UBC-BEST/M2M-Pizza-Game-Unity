@@ -640,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PizzaInstructions: {fileID: 831454274}
   _Pizza: {fileID: 156967710}
-  _Topping: {fileID: 0}
+  _Topping: {fileID: 1735311401}
   scoreText: {fileID: 1941216440}
 --- !u!4 &1379322743
 Transform:
@@ -695,6 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735311402}
   - component: {fileID: 1735311403}
+  - component: {fileID: 1735311404}
   m_Layer: 8
   m_Name: ToppingSpawner
   m_TagString: Untagged
@@ -733,6 +734,34 @@ MonoBehaviour:
   sausagePrefab: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
   greenPepperPrefab: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
   olivePrefab: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
+--- !u!114 &1735311404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735311401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c42720301264f9241bff6e9dabe92fef, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735311403}
+        m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
+        m_MethodName: DestroyToppings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1829589063
 GameObject:
   m_ObjectHideFlags: 0
