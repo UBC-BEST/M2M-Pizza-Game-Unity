@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// WIP - Wesley is currently working on this, dont touch!!! <br/>
@@ -14,6 +15,10 @@ public class ToppingScript : MonoBehaviour
     [SerializeField] GameObject olivePrefab; 
     private Vector2 spawnPos = new Vector2(0, 0);
     private List<GameObject> allToppings = new List<GameObject>();
+    private bool pepperoniSpawned = false;
+    private bool sausageSpawned = false;
+    private bool greenPepperSpawned = false;
+    private bool oliveSpawned = false;
 
     /// <summary>
     /// Set the tags for each topping prefab to "Topping". 
@@ -30,54 +35,66 @@ public class ToppingScript : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) {
+        if (Input.GetKeyDown(KeyCode.P) && !pepperoniSpawned) {         
             SpawnToppings('P');
         }
-        if (Input.GetKeyDown(KeyCode.S)) {
+        if (Input.GetKeyDown(KeyCode.S) && !sausageSpawned) {
             SpawnToppings('S');
         }
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (Input.GetKeyDown(KeyCode.G) && !greenPepperSpawned) {
             SpawnToppings('G');
         }
-        if (Input.GetKeyDown(KeyCode.O)) {
+        if (Input.GetKeyDown(KeyCode.O) && !oliveSpawned) {
             SpawnToppings('O');
         }
     }
 
     /// <summary>
     /// Given the first letter of a topping, instantiates 20 of that topping randomly onto the pizza. <br/>
-    /// TODO: clean up the code, make it more efficient, actually spawn them in a circle, lock the toppings' position to the pizza. 
+    /// Spawns toppings a minimum distance away from each other. <br/> 
+    /// Does not allow topping spawning if that topping has already been spawned. <br/>
+    /// TODO: lock the toppings' position to the pizza. 
     /// </summary>
     /// <param name="name">The name of the topping. Must either be 'P', 'S', 'G', or 'O', otherwise the code does nothing.</param>
     void SpawnToppings(char name) {
+        Vector2[] spawnPosList = new Vector2[20];
+        
+        for (int i = 0; i < 20; i++) {
+            float spawnRadius = UnityEngine.Random.Range(0f, 2f);
+            float spawnAngle = UnityEngine.Random.Range(0f, 359f);
+            spawnPos = new Vector2(spawnRadius * (float)Math.Cos(spawnAngle), spawnRadius * (float)Math.Sin(spawnAngle) - 1.5f);
+            spawnPosList[i] = spawnPos;
+            // verify if the topping is spawned some distance away 
+        }
+
         switch(name) {
             case 'P':
-                for (int i = 0; i < 20; i++) {
-                    spawnPos = new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f));
-                    var toppingInstance = Instantiate(pepperoniPrefab, spawnPos, Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f)));
+                foreach(Vector2 position in spawnPosList) {
+                    var toppingInstance = Instantiate(pepperoniPrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
+                pepperoniSpawned = true;
                 break;
             case 'S':
-                for (int i = 0; i < 20; i++) {
-                    spawnPos = new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f));
-                    var toppingInstance = Instantiate(sausagePrefab, spawnPos, Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f)));
+                foreach(Vector2 position in spawnPosList) {
+                    var toppingInstance = Instantiate(sausagePrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
+                sausageSpawned = true;
                 break;
             case 'G': 
-                for (int i = 0; i < 20; i++) {
-                    spawnPos = new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f));
-                    var toppingInstance = Instantiate(greenPepperPrefab, spawnPos, Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f)));
+                foreach(Vector2 position in spawnPosList) {
+                    var toppingInstance = Instantiate(greenPepperPrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
+                greenPepperSpawned = true;
                 break;
             case 'O': 
-                for (int i = 0; i < 20; i++) {
-                    spawnPos = new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f));
-                    var toppingInstance = Instantiate(olivePrefab, spawnPos, Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f)));
+                foreach(Vector2 position in spawnPosList) {
+                    var toppingInstance = Instantiate(olivePrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
+                oliveSpawned = true;
                 break;
         }
     }
