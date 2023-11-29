@@ -75,11 +75,24 @@ public class OrderControlScript : MonoBehaviour
     /// </summary>
     public void OnPizzaOffScreen() {
         orderExists = false;
-        
-        if (orderNumber == pizzaScript.GetSpriteNumber()) {
-            ScoreUp.TriggerEvent();
-        }
-
         transform.DOMove(startingPosition, moveTime).SetEase(Ease.InSine);
+    }
+
+    public bool[] GetOrderNumber() {
+        bool[] toppings = {false, false, false, false};   // P = 0, S = 1, G = 2, O = 3 (the index of each topping)
+
+        if (orderNumber == 1 || orderNumber == 5 || orderNumber == 6 || orderNumber == 7 || 
+            orderNumber == 11 || orderNumber == 12 || orderNumber == 13 || orderNumber == 15) toppings[0] = true; 
+
+        if (orderNumber == 2 || orderNumber == 5 || orderNumber == 8 || orderNumber == 9 || 
+            orderNumber == 11 || orderNumber == 12 || orderNumber == 14 || orderNumber == 15) toppings[1] = true; 
+
+        if (orderNumber == 3 || orderNumber == 6 || orderNumber == 8 || orderNumber == 10 || 
+            orderNumber == 11 || orderNumber == 13 || orderNumber == 14 || orderNumber == 15) toppings[2] = true; 
+
+        if (orderNumber == 4 || orderNumber == 7 || orderNumber == 9 || orderNumber == 10 || 
+            orderNumber == 12 || orderNumber == 13 || orderNumber == 14 || orderNumber == 15) toppings[3] = true; 
+
+        return toppings; 
     }
 }

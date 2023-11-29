@@ -420,6 +420,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3d555bf71f5054d9c4415ac0f128b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexPressed: {fileID: 11400000, guid: 08cba24469bc5fe4bae045456604b4f0, type: 2}
+  middlePressed: {fileID: 11400000, guid: 011d09f6af3675a4688efed3ec8d4639, type: 2}
+  ringPressed: {fileID: 11400000, guid: 2fc9a160a922e4e4896d0edba19daacb, type: 2}
+  pinkyPressed: {fileID: 11400000, guid: 45b5564ba48331e48a17bf42e7a58e30, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +744,10 @@ GameObject:
   - component: {fileID: 1735311402}
   - component: {fileID: 1735311403}
   - component: {fileID: 1735311404}
+  - component: {fileID: 1735311408}
+  - component: {fileID: 1735311407}
+  - component: {fileID: 1735311406}
+  - component: {fileID: 1735311405}
   m_Layer: 8
   m_Name: ToppingSpawner
   m_TagString: Untagged
@@ -778,6 +786,10 @@ MonoBehaviour:
   sausagePrefab: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
   greenPepperPrefab: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
   olivePrefab: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
+  IndexPressed: {fileID: 11400000, guid: 08cba24469bc5fe4bae045456604b4f0, type: 2}
+  MiddlePressed: {fileID: 11400000, guid: 011d09f6af3675a4688efed3ec8d4639, type: 2}
+  RingPressed: {fileID: 11400000, guid: 2fc9a160a922e4e4896d0edba19daacb, type: 2}
+  PinkyPressed: {fileID: 11400000, guid: 45b5564ba48331e48a17bf42e7a58e30, type: 2}
 --- !u!114 &1735311404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,6 +809,118 @@ MonoBehaviour:
       - m_Target: {fileID: 1735311403}
         m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
         m_MethodName: DestroyToppings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1735311405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735311401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 45b5564ba48331e48a17bf42e7a58e30, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735311403}
+        m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
+        m_MethodName: PinkyTopping
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1735311406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735311401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2fc9a160a922e4e4896d0edba19daacb, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735311403}
+        m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
+        m_MethodName: RingTopping
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1735311407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735311401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 011d09f6af3675a4688efed3ec8d4639, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735311403}
+        m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
+        m_MethodName: MiddleTopping
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1735311408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735311401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 08cba24469bc5fe4bae045456604b4f0, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735311403}
+        m_TargetAssemblyTypeName: ToppingScript, Assembly-CSharp
+        m_MethodName: IndexTopping
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -996,6 +1120,7 @@ GameObject:
   - component: {fileID: 1941216439}
   - component: {fileID: 1941216441}
   - component: {fileID: 1941216440}
+  - component: {fileID: 1941216442}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -1120,3 +1245,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941216438}
   m_CullTransparentMesh: 1
+--- !u!114 &1941216442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941216438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6644f89ba97f9347bd1f7c0633fcb4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderControlScript: {fileID: 1829589064}
+  ScoreUp: {fileID: 11400000, guid: 2a7eddeb0b2c3eb4a8a52ead8882ee93, type: 2}

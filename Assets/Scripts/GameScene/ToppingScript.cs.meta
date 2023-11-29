@@ -8,6 +8,10 @@ MonoImporter:
   - sausagePrefab: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
   - greenPepperPrefab: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
   - olivePrefab: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
+  - IndexPressed: {instanceID: 0}
+  - MiddlePressed: {instanceID: 0}
+  - RingPressed: {instanceID: 0}
+  - PinkyPressed: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

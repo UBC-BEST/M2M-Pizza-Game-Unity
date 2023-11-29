@@ -13,8 +13,10 @@ public class ToppingScript : MonoBehaviour
     [SerializeField] GameObject sausagePrefab;
     [SerializeField] GameObject greenPepperPrefab;
     [SerializeField] GameObject olivePrefab; 
+    [SerializeField] GameEvent IndexPressed, MiddlePressed, RingPressed, PinkyPressed;
     private Vector2 spawnPos = new Vector2(0, 0);
     private List<GameObject> allToppings = new List<GameObject>();
+
     private bool pepperoniSpawned = false;
     private bool sausageSpawned = false;
     private bool greenPepperSpawned = false;
@@ -31,32 +33,21 @@ public class ToppingScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawn the specific topping when the corresponding key is pressed. 
+    /// Does nothing :)
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && !pepperoniSpawned) {         
-            SpawnToppings('P');
-        }
-        if (Input.GetKeyDown(KeyCode.S) && !sausageSpawned) {
-            SpawnToppings('S');
-        }
-        if (Input.GetKeyDown(KeyCode.G) && !greenPepperSpawned) {
-            SpawnToppings('G');
-        }
-        if (Input.GetKeyDown(KeyCode.O) && !oliveSpawned) {
-            SpawnToppings('O');
-        }
+        
     }
 
     /// <summary>
     /// Given the first letter of a topping, instantiates 20 of that topping randomly onto the pizza. <br/>
     /// Spawns toppings a minimum distance away from each other. <br/> 
     /// Does not allow topping spawning if that topping has already been spawned. <br/>
-    /// TODO: lock the toppings' position to the pizza. 
+    /// TODO: lock the toppings' position to the pizza. also it still allows toppings to be spawned after initially getting made
     /// </summary>
     /// <param name="name">The name of the topping. Must either be 'P', 'S', 'G', or 'O', otherwise the code does nothing.</param>
-    void SpawnToppings(char name) {
+    void SpawnToppings(char name) {      
         Vector2[] spawnPosList = new Vector2[20];
         
         for (int i = 0; i < 20; i++) {
@@ -73,28 +64,28 @@ public class ToppingScript : MonoBehaviour
                     var toppingInstance = Instantiate(pepperoniPrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
-                pepperoniSpawned = true;
+                IndexPressed.TriggerEvent();
                 break;
             case 'S':
                 foreach(Vector2 position in spawnPosList) {
                     var toppingInstance = Instantiate(sausagePrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
-                sausageSpawned = true;
+                MiddlePressed.TriggerEvent();
                 break;
             case 'G': 
                 foreach(Vector2 position in spawnPosList) {
                     var toppingInstance = Instantiate(greenPepperPrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
-                greenPepperSpawned = true;
+                RingPressed.TriggerEvent();
                 break;
             case 'O': 
                 foreach(Vector2 position in spawnPosList) {
                     var toppingInstance = Instantiate(olivePrefab, position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
                     allToppings.Add(toppingInstance);
                 }
-                oliveSpawned = true;
+                PinkyPressed.TriggerEvent();
                 break;
         }
     }
@@ -107,6 +98,39 @@ public class ToppingScript : MonoBehaviour
         foreach(var instance in allToppings) {
             allToppings.Remove(instance);
             Destroy(instance);
+        }
+
+        pepperoniSpawned = false;
+        sausageSpawned = false;
+        greenPepperSpawned = false;
+        oliveSpawned = false; 
+    }
+
+    public void IndexTopping() {
+        if (!pepperoniSpawned) {
+            SpawnToppings('P');
+            pepperoniSpawned = true;
+        } 
+    }
+
+    public void MiddleTopping() {
+        if (!sausageSpawned) {
+            SpawnToppings('S');
+            sausageSpawned = true; 
+        }
+    }
+
+    public void RingTopping() {
+        if (!greenPepperSpawned) {
+            SpawnToppings('G');
+            greenPepperSpawned = true; 
+        }
+    }
+
+    public void PinkyTopping() {
+        if (!oliveSpawned) {
+            SpawnToppings('O');
+            oliveSpawned = true; 
         }
     }
 }

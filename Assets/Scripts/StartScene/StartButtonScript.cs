@@ -24,8 +24,14 @@ public class StartButtonScript : MonoBehaviour
     /// </summary>
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0)) {
             SceneManager.LoadScene(sceneName:"GameScene");
         }
+        */
+    }
+
+    public void bingus() {
+        SceneManager.LoadScene(sceneName:"GameScene");
     }
 }
