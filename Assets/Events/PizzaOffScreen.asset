@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 259b6ba23b2dbea498bf5b1d1120c58c, type: 3}
-  m_Name: PizzaOffScreen
+  m_Name: pizzaOffScreen
   m_EditorClassIdentifier: 
