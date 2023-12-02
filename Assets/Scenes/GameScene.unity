@@ -411,10 +411,10 @@ MonoBehaviour:
   oliveBin: {fileID: 746632553}
   greenPepperBin: {fileID: 471440993}
   sausageBin: {fileID: 934712536}
-  startingPositionO: {x: 0, y: 3.7}
-  startingPositionP: {x: -3.5, y: 3.7}
-  startingPositionS: {x: 3.5, y: 3.7}
-  startingPositionG: {x: 5.5, y: 3.7}
+  startingPositionO: {x: -3.3, y: 6.5}
+  startingPositionP: {x: -0.5, y: 6.5}
+  startingPositionS: {x: 2.3, y: 6.5}
+  startingPositionG: {x: 5.1, y: 6.5}
   endPositionO: {x: -3.3, y: 3.4}
   endPositionP: {x: -0.5, y: 3.4}
   endPositionS: {x: 2.3, y: 3.4}
@@ -653,10 +653,10 @@ MonoBehaviour:
   oliveBin: {fileID: 746632553}
   greenPepperBin: {fileID: 471440993}
   sausageBin: {fileID: 934712536}
-  startingPositionO: {x: 0, y: 3.7}
-  startingPositionP: {x: 3.5, y: 3.7}
-  startingPositionS: {x: 3.5, y: 3.7}
-  startingPositionG: {x: 5.5, y: 3.7}
+  startingPositionO: {x: -3.3, y: 6.5}
+  startingPositionP: {x: -0.5, y: 6.5}
+  startingPositionS: {x: 2.3, y: 6.5}
+  startingPositionG: {x: 5.1, y: 6.5}
   endPositionO: {x: -3.3, y: 3.4}
   endPositionP: {x: -0.5, y: 3.4}
   endPositionS: {x: 2.3, y: 3.4}
@@ -954,10 +954,10 @@ MonoBehaviour:
   oliveBin: {fileID: 746632553}
   greenPepperBin: {fileID: 471440993}
   sausageBin: {fileID: 934712536}
-  startingPositionO: {x: 0, y: 3.7}
-  startingPositionP: {x: -3.5, y: 3.7}
-  startingPositionS: {x: 3.5, y: 3.7}
-  startingPositionG: {x: 5.5, y: 3.7}
+  startingPositionO: {x: -3.3, y: 6.5}
+  startingPositionP: {x: -0.5, y: 6.5}
+  startingPositionS: {x: 2.3, y: 6.5}
+  startingPositionG: {x: 5.1, y: 6.5}
   endPositionO: {x: -3.3, y: 3.4}
   endPositionP: {x: -0.5, y: 3.4}
   endPositionS: {x: 2.3, y: 3.4}
