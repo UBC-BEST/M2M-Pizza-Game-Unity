@@ -8,7 +8,7 @@ public class InputHandlerScript : MonoBehaviour
     private string inputMode;
     private bool inputAllowed;
     
-    public void Setup()
+    public void Awake()
     {
         inputAllowed = false;
         inputMode = "keyboard"; 
@@ -33,7 +33,7 @@ public class InputHandlerScript : MonoBehaviour
     // add timeout control
     private void KeyboardInput()
     {
-        if (Input.GetKeyDown(KeyCode.P)) indexInput.TriggerEvent();
+		if (Input.GetKeyDown(KeyCode.P)) indexInput.TriggerEvent();
         if (Input.GetKeyDown(KeyCode.S)) middleInput.TriggerEvent();
         if (Input.GetKeyDown(KeyCode.G)) ringInput.TriggerEvent();
         if (Input.GetKeyDown(KeyCode.O)) pinkyInput.TriggerEvent();

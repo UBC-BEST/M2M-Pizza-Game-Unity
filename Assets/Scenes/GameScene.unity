@@ -258,6 +258,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471675989}
+  - component: {fileID: 471675994}
+  - component: {fileID: 471675993}
+  - component: {fileID: 471675992}
+  - component: {fileID: 471675991}
+  - component: {fileID: 471675990}
   m_Layer: 0
   m_Name: ToppingSpawner
   m_TagString: Untagged
@@ -280,6 +285,134 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471675990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471675988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ae87d97e0c092b64e9a30ce7db42da0d, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471675994}
+        m_TargetAssemblyTypeName: ToppingSpawnerScript, Assembly-CSharp
+        m_MethodName: SpawnOlive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &471675991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471675988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8f1040031a65efd45b2620243670790e, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471675994}
+        m_TargetAssemblyTypeName: ToppingSpawnerScript, Assembly-CSharp
+        m_MethodName: SpawnGreenPepper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &471675992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471675988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2e0dd5813b82dcc44990bea2963256f8, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471675994}
+        m_TargetAssemblyTypeName: ToppingSpawnerScript, Assembly-CSharp
+        m_MethodName: SpawnSausage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &471675993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471675988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1eada6045e0857c45b796071005ff5a8, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471675994}
+        m_TargetAssemblyTypeName: ToppingSpawnerScript, Assembly-CSharp
+        m_MethodName: SpawnPepperoni
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &471675994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471675988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe3fa9700d42f84bafae7f7658a69c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pepperoni: {fileID: 9076799742915505482, guid: 99e63cf52ad224647a832b17e19f1f4e, type: 3}
+  sausage: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
+  greenPepper: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
+  olive: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,10 +517,11 @@ GameObject:
   - component: {fileID: 1053742380}
   - component: {fileID: 1053742379}
   - component: {fileID: 1053742385}
-  - component: {fileID: 1053742378}
   - component: {fileID: 1053742384}
   - component: {fileID: 1053742383}
   - component: {fileID: 1053742382}
+  - component: {fileID: 1053742386}
+  - component: {fileID: 1053742387}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -395,46 +529,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1053742378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053742377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: e314d71412df8724a9794d47922660b1, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1053742379}
-        m_TargetAssemblyTypeName: GameplayLoop, Assembly-CSharp
-        m_MethodName: GameStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1053742385}
-        m_TargetAssemblyTypeName: InputHandlerScript, Assembly-CSharp
-        m_MethodName: Setup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1053742379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +543,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   order: {fileID: 1367858028}
   pizza: {fileID: 1290656393}
+  toppingSpawner: {fileID: 471675988}
+  startGameLoop: {fileID: 11400000, guid: 7a4b930fd8c136d4d95ee60555a34ba9, type: 2}
 --- !u!114 &1053742380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInstructions: {fileID: 232729926}
-  startGameLoopEvent: {fileID: 11400000, guid: e314d71412df8724a9794d47922660b1, type: 2}
+  startGameLoop: {fileID: 11400000, guid: 7a4b930fd8c136d4d95ee60555a34ba9, type: 2}
 --- !u!4 &1053742381
 Transform:
   m_ObjectHideFlags: 0
@@ -591,6 +687,62 @@ MonoBehaviour:
   ringInput: {fileID: 11400000, guid: 8f1040031a65efd45b2620243670790e, type: 2}
   pinkyInput: {fileID: 11400000, guid: ae87d97e0c092b64e9a30ce7db42da0d, type: 2}
   pizzaSent: {fileID: 11400000, guid: 9fd96524d8ca3524cb47c13e6bdcffec, type: 2}
+--- !u!114 &1053742386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053742377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c7163ade2f1b1d2469f27bdbc0815fb6, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1053742379}
+        m_TargetAssemblyTypeName: GameplayLoop, Assembly-CSharp
+        m_MethodName: PizzaAtMiddle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1053742387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053742377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7a4b930fd8c136d4d95ee60555a34ba9, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1053742379}
+        m_TargetAssemblyTypeName: GameplayLoop, Assembly-CSharp
+        m_MethodName: StartGameLoop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1290656393
 GameObject:
   m_ObjectHideFlags: 0
