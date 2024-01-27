@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputHandlerScript : MonoBehaviour
 {
-    [SerializeField] private GameEvent indexInput, middleInput, ringInput, pinkyInput, pizzaSent;
+    [SerializeField] private GameEvent indexInput, middleInput, ringInput, pinkyInput;
     private string inputMode;
     private bool inputAllowed;
     
@@ -37,7 +37,6 @@ public class InputHandlerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S)) middleInput.TriggerEvent();
         if (Input.GetKeyDown(KeyCode.G)) ringInput.TriggerEvent();
         if (Input.GetKeyDown(KeyCode.O)) pinkyInput.TriggerEvent();
-        if (Input.GetKeyDown(KeyCode.Space)) pizzaSent.TriggerEvent();
     }
 
     public void StartInputStreaming()
