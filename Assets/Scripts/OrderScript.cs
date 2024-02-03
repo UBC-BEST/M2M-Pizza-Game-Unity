@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class OrderScript : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer orderSpriteRenderer;
+	[SerializeField] private GameObject pepperoniPrefab, sausagePrefab, greenPepperPrefab, olivePrefab;
+	[SerializeField] private SpriteRenderer orderSpriteRenderer;
     [SerializeField] private GameEvent pizzaSent;
     private Vector2 startingPosition = new Vector2(-6, 8);
     private bool _pizzaSent = false;
@@ -96,6 +97,8 @@ public class OrderScript : MonoBehaviour
 			if (sausageNeeded == 0) sausageComplete = true;
 			if (greenPepperNeeded == 0) greenPepperComplete = true;
 			if (oliveNeeded == 0) oliveComplete = true;
+			
+			// TODO: foreach in range needed; spawn the topping onto the ticket 
 		}
 	}
 }
