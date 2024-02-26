@@ -10,9 +10,10 @@ public class PizzaScript : MonoBehaviour
     private Vector2 startPosition = new Vector2(-12, -0.5f);
     private bool _pizzaSent;
     
-    private void Awake()
+    private void OnEnable()
     {
-		transform.DOMove(startPosition, 0);         
+		Debug.Log("Pizza awake.");
+        transform.DOMove(startPosition, 0);         
 		StartCoroutine(PizzaCoroutine());
     }
 

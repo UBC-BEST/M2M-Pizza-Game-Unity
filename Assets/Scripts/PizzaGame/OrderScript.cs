@@ -12,8 +12,9 @@ public class OrderScript : MonoBehaviour
     private bool _pizzaSent = false;
 	private Order currentOrder;
     
-    private void Awake()
+    private void OnEnable()
     {
+		Debug.Log("Order ticket awake.");
 		transform.DOMove(startingPosition, 0);
 		StartCoroutine(OrderCoroutine());
     }
@@ -70,7 +71,7 @@ public class OrderScript : MonoBehaviour
 
     private void CheckIfPizzaDone()
     {
-	    if (currentOrder.pepperoniComplete &&
+		if (currentOrder.pepperoniComplete &&
 	        currentOrder.sausageComplete &&
 	        currentOrder.greenPepperComplete &&
 	        currentOrder.oliveComplete)
@@ -92,6 +93,8 @@ public class OrderScript : MonoBehaviour
 			sausageNeeded = Random.Range(0, 4);
 			greenPepperNeeded = Random.Range(0, 4);
 			oliveNeeded = Random.Range(0, 4);
+
+			Debug.Log("P: " + pepperoniNeeded + "   S: " + sausageNeeded + "   G: " + greenPepperNeeded + "   O: " + oliveNeeded);
 
 			if (pepperoniNeeded == 0) pepperoniComplete = true;
 			if (sausageNeeded == 0) sausageComplete = true;
