@@ -287,6 +287,7 @@ MonoBehaviour:
   sausage: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
   greenPepper: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
   olive: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
+  toppingList: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +531,6 @@ GameObject:
   - component: {fileID: 1053742383}
   - component: {fileID: 1053742382}
   - component: {fileID: 1053742386}
-  - component: {fileID: 1053742387}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -725,34 +725,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1053742387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053742377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db843014735c56e4b91e39c5eb43e9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7a4b930fd8c136d4d95ee60555a34ba9, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1053742379}
-        m_TargetAssemblyTypeName: GameplayLoop, Assembly-CSharp
-        m_MethodName: StartGameLoop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1290656393
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +734,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1290656394}
-  - component: {fileID: 1290656396}
   - component: {fileID: 1290656395}
   - component: {fileID: 1290656397}
   - component: {fileID: 1290656398}
@@ -782,7 +753,7 @@ Transform:
   m_GameObject: {fileID: 1290656393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.05, y: -0.65, z: 125.88074}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -800,36 +771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2821470431a4e46a13dc8bf7ceb034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pizzaBody: {fileID: 1290656396}
   pizzaAtMiddle: {fileID: 11400000, guid: c7163ade2f1b1d2469f27bdbc0815fb6, type: 2}
   pizzaOffScreen: {fileID: 11400000, guid: b5d7404abcd90c944a6d679579fde921, type: 2}
---- !u!50 &1290656396
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290656393}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1290656397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -871,12 +814,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1032159714, guid: c382883afc2c07f488d10a02aa57ed51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fb1179707419e2419fb67dd838e8dd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 9.95, y: 14.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

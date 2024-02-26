@@ -8,7 +8,7 @@ public class InputHandlerScript : MonoBehaviour
     private string inputMode;
     private bool inputAllowed;
     
-    public void Awake()
+    public void OnEnable()
     {
         inputAllowed = false;
         inputMode = "keyboard"; 

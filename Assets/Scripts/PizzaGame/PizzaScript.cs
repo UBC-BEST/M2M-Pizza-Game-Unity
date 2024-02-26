@@ -5,14 +5,12 @@ using DG.Tweening;
 
 public class PizzaScript : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D pizzaBody;
     [SerializeField] private GameEvent pizzaAtMiddle, pizzaOffScreen;
     private Vector2 startPosition = new Vector2(-12, -0.5f);
     private bool _pizzaSent;
     
     private void OnEnable()
     {
-		Debug.Log("Pizza awake.");
         transform.DOMove(startPosition, 0);         
 		StartCoroutine(PizzaCoroutine());
     }

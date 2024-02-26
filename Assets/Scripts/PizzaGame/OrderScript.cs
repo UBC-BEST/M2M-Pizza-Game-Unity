@@ -14,7 +14,6 @@ public class OrderScript : MonoBehaviour
     
     private void OnEnable()
     {
-		Debug.Log("Order ticket awake.");
 		transform.DOMove(startingPosition, 0);
 		StartCoroutine(OrderCoroutine());
     }

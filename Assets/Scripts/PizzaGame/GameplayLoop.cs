@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -6,8 +7,10 @@ public class GameplayLoop : MonoBehaviour
 {
     [SerializeField] private GameObject order, pizza, toppingSpawner;
     [SerializeField] public TextMeshProUGUI scoreText;
+    private List<GameObject> toppingListCopy;
     private bool gameLoopRunning, _pizzaAtMiddle, _pizzaSent, _pizzaOffScreen;
     private int _score;
+    
 
     private void Update()
     {
@@ -21,29 +24,25 @@ public class GameplayLoop : MonoBehaviour
 
     private IEnumerator GameLoop()
     {
-        Debug.Log("Order awaken requested.");
         order.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-
-        Debug.Log("Pizza awaken requested.");
+        
         pizza.SetActive(true);
         yield return new WaitUntil(() => _pizzaAtMiddle);
         _pizzaAtMiddle = false;
         
         toppingSpawner.SetActive(true);
-        Debug.Log("Topping spawner awake.");
         yield return new WaitUntil(() => _pizzaSent);
         _pizzaSent = false;
         
+        toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
         toppingSpawner.SetActive(false);
-        Debug.Log("Topping spawner asleep.");
         yield return new WaitUntil(() => _pizzaOffScreen);
         _pizzaOffScreen = false;
         
         pizza.SetActive(false);
-        Debug.Log("Pizza asleep.");
         order.SetActive(false);
-        Debug.Log("Order ticket asleep.");
+        DeleteToppings();
 
         _score++;
         scoreText.text = "Score: " + _score;
@@ -52,6 +51,16 @@ public class GameplayLoop : MonoBehaviour
         gameLoopRunning = false;
     }
 
+    private void DeleteToppings()
+    {
+        foreach (GameObject topping in toppingListCopy)
+        {
+            Destroy(topping);
+        }
+
+        toppingListCopy.Clear();
+    }
+    
     public void PizzaSent()
     {
         _pizzaSent = true; 

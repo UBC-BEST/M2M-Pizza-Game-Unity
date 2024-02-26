@@ -11,8 +11,6 @@ public class GameSetup : MonoBehaviour
 
     private void SpawnToppingBins()
     {
-        Debug.Log("Spawning topping bins.");
-        
         Instantiate(toppingBinP, new Vector3(-0.5f, 3.4f, 0), Quaternion.identity);
         Instantiate(toppingBinS, new Vector3(2.3f, 3.4f, 0), Quaternion.identity);
         Instantiate(toppingBinG, new Vector3(5.1f, 3.4f, 0), Quaternion.identity);
