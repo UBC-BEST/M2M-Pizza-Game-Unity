@@ -35,7 +35,7 @@ public class ToppingSpawnerScript : MonoBehaviour
 
     private void SpawnTopping(GameObject topping)
     {
-        var toppingInstance = Instantiate(topping, new Vector2(0, -0.5f), 
+        var toppingInstance = Instantiate(topping, new Vector2(1.6f, -1.2f), 
             Quaternion.Euler(0, 0, UnityEngine.Random.Range(-180.0f, 180.0f)));
         toppingList.Add(toppingInstance);
     }

@@ -6,18 +6,20 @@ using DG.Tweening;
 public class PizzaScript : MonoBehaviour
 {
     [SerializeField] private GameEvent pizzaAtMiddle, pizzaOffScreen;
-    private Vector2 startPosition = new Vector2(-12, -0.5f);
+    private Vector2 startPosition = new Vector2(-12, -1.2f);
     private bool _pizzaSent;
     
     private void OnEnable()
     {
-        transform.DOMove(startPosition, 0);         
+        transform.DOMove(startPosition, 0);   
 		StartCoroutine(PizzaCoroutine());
+
     }
 
     private IEnumerator PizzaCoroutine()
     {
-        transform.DOMoveX(0, 2).SetEase(Ease.InOutSine);
+        transform.DOMoveX(1.6f, 2).SetEase(Ease.InOutSine);
+        transform.DOMoveY(-1.2f, 2).SetEase(Ease.InOutSine);
         transform.DORotate(new Vector3(0, 0, 360), 2, RotateMode.FastBeyond360)
             .SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(2);
