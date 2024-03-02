@@ -84,7 +84,7 @@ public class OrderScript : MonoBehaviour
 	{
 		public int pepperoni, sausage, greenPepper, olive = 0;
 		public int pepperoniNeeded, sausageNeeded, greenPepperNeeded, oliveNeeded;
-		public bool orderComplete, pepperoniComplete, sausageComplete, greenPepperComplete, oliveComplete = false; 
+		public bool orderComplete, pepperoniComplete, sausageComplete, greenPepperComplete, oliveComplete = false;
 
 		public Order()
 		{
