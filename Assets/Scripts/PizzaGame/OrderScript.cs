@@ -12,6 +12,7 @@ public class OrderScript : MonoBehaviour
     private bool _pizzaSent = false;
 	private Order currentOrder;
     
+
     private void OnEnable()
     {
 		transform.DOMove(startingPosition, 0);
@@ -21,6 +22,11 @@ public class OrderScript : MonoBehaviour
     private IEnumerator OrderCoroutine()
     {
 	    currentOrder = new Order();
+
+		AddOliveOnTicket();
+		AddPepperoniOnTicket();
+		AddSausageOnTicket();
+		AddGreenPepperOnTicket();
 	    
 	    transform.DOMoveY(2, 1);
         yield return new WaitUntil(() => _pizzaSent);
@@ -31,6 +37,62 @@ public class OrderScript : MonoBehaviour
         transform.DOMoveX(-10, 1);
         yield return null; 
     }
+
+	public void AddPepperoniOnTicket() {
+		int pepperoniNeeded = currentOrder.GetPepperoniNeeded();
+		GameObject[] pepperoniObjects = new GameObject[pepperoniNeeded];
+
+		for (int i = 0; i < pepperoniNeeded; i++) {
+			pepperoniObjects[i] = Instantiate(pepperoniPrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< pepperoniNeeded; i++) {
+			pepperoniObjects[i].transform.DOMove(new Vector3(-7.1f + i, 2.35f), 1.0f);
+			pepperoniObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+		public void AddSausageOnTicket() {
+		int sausageNeeded = currentOrder.GetSausageNeeded();
+		GameObject[] sausageObjects = new GameObject[sausageNeeded];
+
+		for (int i = 0; i < sausageNeeded; i++) {
+			sausageObjects[i] = Instantiate(sausagePrefab, new Vector3(-7.07f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< sausageNeeded; i++) {
+			sausageObjects[i].transform.DOMove(new Vector3(-7.07f + i, 1.59f), 1.0f);
+			sausageObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+	public void AddGreenPepperOnTicket() {
+		int greenPepperNeeded = currentOrder.GetGreenPepperNeeded();
+		GameObject[] greenPepperObjects = new GameObject[greenPepperNeeded];
+
+		for (int i = 0; i < greenPepperNeeded; i++) {
+			greenPepperObjects[i] = Instantiate(greenPepperPrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< greenPepperNeeded; i++) {
+			greenPepperObjects[i].transform.DOMove(new Vector3(-7f + i, 0.79f), 1.0f);
+			greenPepperObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+	public void AddOliveOnTicket() {
+		int oliveNeeded = currentOrder.GetOliveNeeded();
+		GameObject[] oliveObjects = new GameObject[oliveNeeded];
+
+		for (int i = 0; i < oliveNeeded; i++) {
+    		oliveObjects[i] = Instantiate(olivePrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i < oliveNeeded; i++) {
+    		oliveObjects[i].transform.DOMove(new Vector3(-7f + i, 3.2f), 1.0f);
+    		oliveObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 2;
+		}
+	}
     
     public void AddPepperoni()
     {
@@ -88,6 +150,7 @@ public class OrderScript : MonoBehaviour
 
 		public Order()
 		{
+			
 			pepperoniNeeded = Random.Range(0, 4);
 			sausageNeeded = Random.Range(0, 4);
 			greenPepperNeeded = Random.Range(0, 4);
@@ -107,37 +170,25 @@ public class OrderScript : MonoBehaviour
 			// if (pepperoniNeeded == 1)  
 			Debug.Log(Screen.width);
 			Debug.Log(Screen.height);
-			// Instantiate(olivePrefab, new Vector3(0.3f, 4.4f, 0), Quaternion.identity);
-
-			// AddToppingsToTicket();
+			
+			
 		}
 
-		// public AddToppingsToTicket()
-        // {
-        //     // Instantiate topping objects on the ticket based on the order requirements
-        //     for (int i = 0; i < pepperoniNeeded; i++)
-        //     {
-        //         // Instantiate pepperoniPrefab on the ticket
-		// 		Instantiate(pepperoniPrefab, new Vector3(0.3f, 4.4f, 0), Quaternion.identity);
-        //     }
+		public int GetPepperoniNeeded(){
+        		return pepperoniNeeded;
+    		}
 
-        //     for (int i = 0; i < sausageNeeded; i++)
-        //     {
-        //         // Instantiate sausagePrefab on the ticket
-        //         Instantiate(sausagePrefab, new Vector3(0f, 4.4f, 0), Quaternion.identity);
-        //     }
+    		public int GetSausageNeeded(){
+        		return sausageNeeded;
+    		}
 
-        //     for (int i = 0; i < greenPepperNeeded; i++)
-        //     {
-        //         // Instantiate greenPepperPrefab on the ticket
-        //         Instantiate(greenPepperPrefab, new Vector3(1f, 4.4f, 0), Quaternion.identity);
-        //     }
+    		public int GetGreenPepperNeeded(){
+        		return greenPepperNeeded;
+    		}
 
-        //     for (int i = 0; i < oliveNeeded; i++)
-        //     {
-        //         // Instantiate olivePrefab on the ticket
-        //        Instantiate(olivePrefab, new Vector3(1.3f, 4.4f, 0), Quaternion.identity);
-        //     }
-        // }
+    		public int GetOliveNeeded(){
+        		return oliveNeeded;
+    		}
+
 	}
 }

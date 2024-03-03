@@ -914,10 +914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19c45573386394449ff698da58f55e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pepperoniPrefab: {fileID: 9076799742915505482, guid: 99e63cf52ad224647a832b17e19f1f4e, type: 3}
-  sausagePrefab: {fileID: 9076799742915505482, guid: 1efd51b2ba8614746ada65f631f18cfd, type: 3}
-  greenPepperPrefab: {fileID: 9076799742915505482, guid: b9b6ed12a6f079046aae882303be8325, type: 3}
-  olivePrefab: {fileID: 9076799742915505482, guid: 8410415bc65d51947be0e278c4c3c6fd, type: 3}
+  pepperoniPrefab: {fileID: 6694565986093874247, guid: 952956e94d28a4352981c8f3fadf9643, type: 3}
+  sausagePrefab: {fileID: 5683933875090887951, guid: 0cb31dc02739d48acabafa815601cb0d, type: 3}
+  greenPepperPrefab: {fileID: 1031755560622585406, guid: 77b54b72b3ccf4e98b21bc27ad6dd570, type: 3}
+  olivePrefab: {fileID: 544323544771921192, guid: 70f6f4e8cec1d44f0a49af226ce2bf4f, type: 3}
   orderSpriteRenderer: {fileID: 1367858032}
   pizzaSent: {fileID: 11400000, guid: 9fd96524d8ca3524cb47c13e6bdcffec, type: 2}
 --- !u!4 &1367858031
