@@ -3,7 +3,12 @@ guid: 2921d7dc3b7d7704591db5c127f9c015
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - order: {instanceID: 0}
+  - pizza: {instanceID: 0}
+  - toppingSpawner: {instanceID: 0}
+  - pepperoniPrefab: {fileID: 6694565986093874247, guid: 952956e94d28a4352981c8f3fadf9643, type: 3}
+  - scoreText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

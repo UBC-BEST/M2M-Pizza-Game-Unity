@@ -12,6 +12,7 @@ public class OrderScript : MonoBehaviour
     private bool _pizzaSent = false;
 	private Order currentOrder;
     
+
     private void OnEnable()
     {
 		transform.DOMove(startingPosition, 0);
@@ -21,8 +22,13 @@ public class OrderScript : MonoBehaviour
     private IEnumerator OrderCoroutine()
     {
 	    currentOrder = new Order();
+
+		AddOliveOnTicket();
+		AddPepperoniOnTicket();
+		AddSausageOnTicket();
+		AddGreenPepperOnTicket();
 	    
-	    transform.DOMoveY(3, 1);
+	    transform.DOMoveY(2, 1);
         yield return new WaitUntil(() => _pizzaSent);
 		_pizzaSent = false;
 		
@@ -31,6 +37,62 @@ public class OrderScript : MonoBehaviour
         transform.DOMoveX(-10, 1);
         yield return null; 
     }
+
+	public void AddPepperoniOnTicket() {
+		int pepperoniNeeded = currentOrder.GetPepperoniNeeded();
+		GameObject[] pepperoniObjects = new GameObject[pepperoniNeeded];
+
+		for (int i = 0; i < pepperoniNeeded; i++) {
+			pepperoniObjects[i] = Instantiate(pepperoniPrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< pepperoniNeeded; i++) {
+			pepperoniObjects[i].transform.DOMove(new Vector3(-7.1f + i, 2.35f), 1.0f);
+			pepperoniObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+		public void AddSausageOnTicket() {
+		int sausageNeeded = currentOrder.GetSausageNeeded();
+		GameObject[] sausageObjects = new GameObject[sausageNeeded];
+
+		for (int i = 0; i < sausageNeeded; i++) {
+			sausageObjects[i] = Instantiate(sausagePrefab, new Vector3(-7.07f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< sausageNeeded; i++) {
+			sausageObjects[i].transform.DOMove(new Vector3(-7.07f + i, 1.59f), 1.0f);
+			sausageObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+	public void AddGreenPepperOnTicket() {
+		int greenPepperNeeded = currentOrder.GetGreenPepperNeeded();
+		GameObject[] greenPepperObjects = new GameObject[greenPepperNeeded];
+
+		for (int i = 0; i < greenPepperNeeded; i++) {
+			greenPepperObjects[i] = Instantiate(greenPepperPrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i< greenPepperNeeded; i++) {
+			greenPepperObjects[i].transform.DOMove(new Vector3(-7f + i, 0.79f), 1.0f);
+			greenPepperObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 3;
+		}
+	}
+
+	public void AddOliveOnTicket() {
+		int oliveNeeded = currentOrder.GetOliveNeeded();
+		GameObject[] oliveObjects = new GameObject[oliveNeeded];
+
+		for (int i = 0; i < oliveNeeded; i++) {
+    		oliveObjects[i] = Instantiate(olivePrefab, new Vector3(-7f + i, 8f, 0), Quaternion.identity);
+		}
+
+		for (int i = 0; i < oliveNeeded; i++) {
+    		oliveObjects[i].transform.DOMove(new Vector3(-7f + i, 3.2f), 1.0f);
+    		oliveObjects[i].GetComponent<SpriteRenderer>().sortingOrder = orderSpriteRenderer.sortingOrder + 2;
+		}
+	}
     
     public void AddPepperoni()
     {
@@ -82,25 +144,51 @@ public class OrderScript : MonoBehaviour
 
 	private class Order
 	{
-		public int pepperoni, sausage, greenPepper, olive = 0;
+		public int pepperoni, sausage, greenPepper, olive;
 		public int pepperoniNeeded, sausageNeeded, greenPepperNeeded, oliveNeeded;
 		public bool orderComplete, pepperoniComplete, sausageComplete, greenPepperComplete, oliveComplete = false;
 
 		public Order()
 		{
+			
 			pepperoniNeeded = Random.Range(0, 4);
 			sausageNeeded = Random.Range(0, 4);
 			greenPepperNeeded = Random.Range(0, 4);
 			oliveNeeded = Random.Range(0, 4);
+			
 
 			Debug.Log("P: " + pepperoniNeeded + "   S: " + sausageNeeded + "   G: " + greenPepperNeeded + "   O: " + oliveNeeded);
+			
 
 			if (pepperoniNeeded == 0) pepperoniComplete = true;
 			if (sausageNeeded == 0) sausageComplete = true;
 			if (greenPepperNeeded == 0) greenPepperComplete = true;
 			if (oliveNeeded == 0) oliveComplete = true;
 			
-			// TODO: foreach in range needed; spawn the topping onto the ticket 
+			// TODO: foreach in range needed; spawn the topping onto the ticket
+
+			// if (pepperoniNeeded == 1)  
+			Debug.Log(Screen.width);
+			Debug.Log(Screen.height);
+			
+			
 		}
+
+		public int GetPepperoniNeeded(){
+        		return pepperoniNeeded;
+    		}
+
+    		public int GetSausageNeeded(){
+        		return sausageNeeded;
+    		}
+
+    		public int GetGreenPepperNeeded(){
+        		return greenPepperNeeded;
+    		}
+
+    		public int GetOliveNeeded(){
+        		return oliveNeeded;
+    		}
+
 	}
 }
