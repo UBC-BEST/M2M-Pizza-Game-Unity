@@ -66,7 +66,7 @@ public class OrderScript : MonoBehaviour
 		}
 	}
 
-		public void AddSausageOnTicket() {
+	public void AddSausageOnTicket() {
 		int sausageNeeded = currentOrder.GetSausageNeeded();
 		GameObject[] sausageObjects = new GameObject[sausageNeeded];
 
@@ -167,7 +167,6 @@ public class OrderScript : MonoBehaviour
 
 		public Order()
 		{
-			
 			pepperoniNeeded = Random.Range(0, 4);
 			sausageNeeded = Random.Range(0, 4);
 			greenPepperNeeded = Random.Range(0, 4);
@@ -181,8 +180,6 @@ public class OrderScript : MonoBehaviour
 			if (sausageNeeded == 0) sausageComplete = true;
 			if (greenPepperNeeded == 0) greenPepperComplete = true;
 			if (oliveNeeded == 0) oliveComplete = true;
-			
-			// TODO: foreach in range needed; spawn the topping onto the ticket
 
 			// if (pepperoniNeeded == 1)  
 			Debug.Log(Screen.width);

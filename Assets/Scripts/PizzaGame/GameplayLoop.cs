@@ -8,47 +8,67 @@ public class GameplayLoop : MonoBehaviour
     [SerializeField] private GameObject order, pizza, toppingSpawner;
     [SerializeField] public TextMeshProUGUI scoreText;
     private List<GameObject> toppingListCopy;
-    private bool gameLoopRunning, _pizzaAtMiddle, _pizzaSent, _pizzaOffScreen;
-    private int _score;
+    private bool gameLoopRunning, pizzaAtMiddle, pizzaSent, pizzaOffScreen;
+    private int score, numToppings;
     
-
     private void Update()
     {
         if (!gameLoopRunning) 
         {
             Debug.Log("Game loop started.");
             StartCoroutine(GameLoop());
-            gameLoopRunning = true;
         }
     }
 
     private IEnumerator GameLoop()
     {
+        gameLoopRunning = true;
+        yield return StartCoroutine(PizzaToMiddle());
+        yield return StartCoroutine(PlacingToppings());
+        yield return StartCoroutine(SendPizza());
+        yield return new WaitForSeconds(1.0f);
+        gameLoopRunning = false;
+    }
+
+    private IEnumerator PizzaToMiddle()
+    {
         order.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         
         pizza.SetActive(true);
-        yield return new WaitUntil(() => _pizzaAtMiddle);
-        _pizzaAtMiddle = false;
+        yield return new WaitUntil(() => pizzaAtMiddle);
         
+        pizzaAtMiddle = false;
+        yield break;
+    }
+    
+    private IEnumerator PlacingToppings() {
         toppingSpawner.SetActive(true);
-        yield return new WaitUntil(() => _pizzaSent);
-        _pizzaSent = false;
+
+        // timer 
+        yield return new WaitUntil(() => pizzaSent);
         
-        toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
+        pizzaSent = false;
+        yield break;
+    }
+
+    private IEnumerator SendPizza()
+    {
         toppingSpawner.SetActive(false);
-        yield return new WaitUntil(() => _pizzaOffScreen);
-        _pizzaOffScreen = false;
+        yield return new WaitUntil(() => pizzaOffScreen);
         
+        pizzaOffScreen = false;
         pizza.SetActive(false);
         order.SetActive(false);
+        
+        toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
+        numToppings = toppingListCopy.Count;
         DeleteToppings();
 
-        _score++;
-        scoreText.text = "Score: " + _score;
-        yield return new WaitForSeconds(1.0f);
+        score = score + numToppings;
+        scoreText.text = "Score: " + score;
 
-        gameLoopRunning = false;
+        yield break;
     }
 
     private void DeleteToppings()
@@ -63,16 +83,16 @@ public class GameplayLoop : MonoBehaviour
     
     public void PizzaSent()
     {
-        _pizzaSent = true; 
+        pizzaSent = true; 
     }
 
     public void PizzaOffScreen()
     {
-        _pizzaOffScreen = true;
+        pizzaOffScreen = true;
     }
 
     public void PizzaAtMiddle()
     {
-        _pizzaAtMiddle = true;
+        pizzaAtMiddle = true;
     }
 }
