@@ -5,18 +5,28 @@ using TMPro;
 
 public class GameplayLoop : MonoBehaviour
 {
+    private const float STRIKE_TIME = 10.0f; 
+    private const int MAX_STRIKES = 3;
+    
     [SerializeField] private GameObject order, pizza, toppingSpawner;
     [SerializeField] public TextMeshProUGUI scoreText;
     private List<GameObject> toppingListCopy;
-    private bool gameLoopRunning, pizzaAtMiddle, pizzaSent, pizzaOffScreen;
-    private int score, numToppings;
+    private bool gameLoopRunning, pizzaAtMiddle, pizzaSent, pizzaOffScreen, gameEnd;
+    private int score, numToppings, numStrikes;
+    private float timer;
     
     private void Update()
     {
-        if (!gameLoopRunning) 
+        if (!gameLoopRunning && !gameEnd) 
         {
             Debug.Log("Game loop started.");
             StartCoroutine(GameLoop());
+        }
+
+        if (gameEnd) 
+        {
+            Debug.Log("lol u suck");
+            Debug.Log("nerd");
         }
     }
 
@@ -42,43 +52,81 @@ public class GameplayLoop : MonoBehaviour
         yield break;
     }
     
-    private IEnumerator PlacingToppings() {
+    private IEnumerator PlacingToppings() 
+    {
         toppingSpawner.SetActive(true);
-
-        // timer 
-        yield return new WaitUntil(() => pizzaSent);
+        timer = STRIKE_TIME;
         
+        while (!pizzaSent) 
+        {
+            yield return StartCoroutine(StrikeTimer());
+        }
+        yield return new WaitUntil(() => pizzaSent);
+
         pizzaSent = false;
         yield break;
+    }
+
+    private IEnumerator StrikeTimer()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0.0f) 
+        {
+            numStrikes++;
+            timer = STRIKE_TIME;
+            Debug.Log("Strike administered. Number of strikes: " + numStrikes);
+        }
+
+        if (numStrikes >= 3) 
+        {
+            gameEnd = true;
+            pizzaSent = true;
+            Debug.Log("Game ended.");
+        }
+
+        yield return null;
     }
 
     private IEnumerator SendPizza()
     {
         toppingSpawner.SetActive(false);
-        yield return new WaitUntil(() => pizzaOffScreen);
-        
-        pizzaOffScreen = false;
-        pizza.SetActive(false);
-        order.SetActive(false);
-        
-        toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
-        numToppings = toppingListCopy.Count;
-        DeleteToppings();
 
-        score = score + numToppings;
-        scoreText.text = "Score: " + score;
+        if (!gameEnd) 
+        {
+            yield return new WaitUntil(() => pizzaOffScreen);
+        
+            pizzaOffScreen = false;
+            pizza.SetActive(false);
+            order.SetActive(false);
+        
+            toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
+            numToppings = toppingListCopy.Count;
+            DeleteToppings(toppingListCopy);
+
+            score = score + numToppings;
+            scoreText.text = "Score: " + score;
+        }
+        else 
+        {
+            pizza.SetActive(false);
+            order.SetActive(false);
+
+            toppingListCopy = toppingSpawner.GetComponent<ToppingSpawnerScript>().toppingList;
+            DeleteToppings(toppingListCopy);
+        }
 
         yield break;
     }
 
-    private void DeleteToppings()
+    private void DeleteToppings(List<GameObject> toppingList)
     {
-        foreach (GameObject topping in toppingListCopy)
+        foreach (GameObject topping in toppingList)
         {
             Destroy(topping);
         }
 
-        toppingListCopy.Clear();
+        toppingList.Clear();
     }
     
     public void PizzaSent()

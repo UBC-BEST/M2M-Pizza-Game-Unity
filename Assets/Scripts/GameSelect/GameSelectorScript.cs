@@ -8,6 +8,7 @@ public class GameSelectorScript : MonoBehaviour
 {
     string path = "Assets\\GameSelect.txt";
     string gameSelection;
+    [SerializeField] GameObject background; 
     
     void Start()
     {
@@ -21,8 +22,9 @@ public class GameSelectorScript : MonoBehaviour
         switch (gameSelection) 
         {
             case "pizza":
+                // change sprite of game select background 
                 StartCoroutine(LoadAsyncScene("PizzaGame"));
-                break;
+                break; 
         }
     }
 
