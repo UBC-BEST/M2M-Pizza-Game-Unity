@@ -5,28 +5,38 @@ using TMPro;
 
 public class GameplayLoop : MonoBehaviour
 {
-    private const float STRIKE_TIME = 10.0f; 
-    private const int MAX_STRIKES = 3;
+    private const float DURATION_MIN = 0.25f;
+    private const float DURATION_S = DURATION_MIN * 60.0f;
     
     [SerializeField] private GameObject order, pizza, toppingSpawner;
     [SerializeField] public TextMeshProUGUI scoreText;
     private List<GameObject> toppingListCopy;
     private bool gameLoopRunning, pizzaAtMiddle, pizzaSent, pizzaOffScreen, gameEnd;
-    private int score, numToppings, numStrikes;
+    private int score, numToppings;
     private float timer;
+
+    private void OnEnable()
+    {
+        timer = DURATION_S;
+    }
     
     private void Update()
     {
+        GameDurationControl();
+        
         if (!gameLoopRunning && !gameEnd) 
         {
             Debug.Log("Game loop started.");
             StartCoroutine(GameLoop());
         }
-
+        
         if (gameEnd) 
         {
-            Debug.Log("lol u suck");
-            Debug.Log("nerd");
+            // display end screen 
+            order.SetActive(false);
+            pizza.SetActive(false);
+            toppingSpawner.SetActive(false);
+            Debug.Log("Game complete!!!!!!!!!");
         }
     }
 
@@ -55,37 +65,10 @@ public class GameplayLoop : MonoBehaviour
     private IEnumerator PlacingToppings() 
     {
         toppingSpawner.SetActive(true);
-        timer = STRIKE_TIME;
-        
-        while (!pizzaSent) 
-        {
-            yield return StartCoroutine(StrikeTimer());
-        }
         yield return new WaitUntil(() => pizzaSent);
 
         pizzaSent = false;
         yield break;
-    }
-
-    private IEnumerator StrikeTimer()
-    {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0.0f) 
-        {
-            numStrikes++;
-            timer = STRIKE_TIME;
-            Debug.Log("Strike administered. Number of strikes: " + numStrikes);
-        }
-
-        if (numStrikes >= 3) 
-        {
-            gameEnd = true;
-            pizzaSent = true;
-            Debug.Log("Game ended.");
-        }
-
-        yield return null;
     }
 
     private IEnumerator SendPizza()
@@ -117,6 +100,16 @@ public class GameplayLoop : MonoBehaviour
         }
 
         yield break;
+    }
+
+    private void GameDurationControl()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0.0f)
+        {
+            gameEnd = true;
+        }
     }
 
     private void DeleteToppings(List<GameObject> toppingList)
