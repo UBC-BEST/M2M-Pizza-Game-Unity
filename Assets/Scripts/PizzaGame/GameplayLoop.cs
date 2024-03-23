@@ -17,6 +17,8 @@ public class GameplayLoop : MonoBehaviour
         if (!gameLoopRunning) 
         {
             Debug.Log("Game loop started.");
+            Debug.Log(Screen.width);
+            Debug.Log(Screen.height);
             StartCoroutine(GameLoop());
             gameLoopRunning = true;
         }
