@@ -36,7 +36,6 @@ public class GameplayLoop : MonoBehaviour
             order.SetActive(false);
             pizza.SetActive(false);
             toppingSpawner.SetActive(false);
-            Debug.Log("Game complete!!!!!!!!!");
         }
     }
 
