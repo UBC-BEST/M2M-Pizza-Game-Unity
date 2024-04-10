@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Ports;
 using UnityEngine;
 
 public class InputHandlerScript : MonoBehaviour
@@ -7,15 +8,17 @@ public class InputHandlerScript : MonoBehaviour
     [SerializeField] private GameEvent indexInput, middleInput, ringInput, pinkyInput;
     private string inputMode;
     private bool inputAllowed;
+    SerialPort stream = new SerialPort("\\\\.\\COM5", 115200);
+    string[] fingerValueStrings = {"", "", "", ""};
+    int[] fingerValues = {0, 0, 0, 0};
+    int inputTimeout = 0;
     
     public void OnEnable()
     {
         inputAllowed = false;
-        inputMode = "keyboard"; 
-
-        // TODO: open serial
-        // if serial opens, inputMode = serial;
-        // if serial doesn't open, inputMode = keyboard; 
+        stream.Open();
+        inputMode = "serial";
+        // inputMode = "keyboard"; 
     }
 
     private void Update()
@@ -24,13 +27,40 @@ public class InputHandlerScript : MonoBehaviour
         if (inputAllowed && inputMode == "keyboard") KeyboardInput();
     }
 
-    // need to write this later 
     private void SerialInput()
-    {
-        
+    {     
+        // edit to match output 
+        fingerValueStrings = stream.ReadLine().Split(", "); 
+
+        for (int i = 0; i < 4; i++) {
+            fingerValues[i] = int.Parse(fingerValueStrings[i]);
+        }
+
+        InputControl();
     }
 
-    // add timeout control
+    void InputControl() {
+        if (fingerValues[0] > 30 && inputTimeout == 0) {
+            indexInput.TriggerEvent();
+            inputTimeout = 10; 
+        }
+        if (fingerValues[1] > 30 && inputTimeout == 0) {
+            middleInput.TriggerEvent();
+            inputTimeout = 10; 
+        }
+        if (fingerValues[2] > 30 && inputTimeout == 0) {
+            ringInput.TriggerEvent();
+            inputTimeout = 10; 
+        }
+        if (fingerValues[3] > 30 && inputTimeout == 0) {
+            pinkyInput.TriggerEvent(); 
+            inputTimeout = 10; 
+        }
+
+        // TODO: arbitrary timeout - do later 
+        if (inputTimeout > 0) inputTimeout = inputTimeout - 1;
+    }
+
     private void KeyboardInput()
     {
 		if (Input.GetKeyDown(KeyCode.P)) indexInput.TriggerEvent();
